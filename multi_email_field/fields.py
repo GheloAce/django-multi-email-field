@@ -22,6 +22,10 @@ class MultiEmailField(models.Field):
             return value
         elif isinstance(value, list):
             return "\n".join(value)
+            
+    # TODO unit test implications
+    def from_db_value(self, value, expression, connection, context):
+        return self.to_python(value)
 
     def to_python(self, value):
         if not value:
